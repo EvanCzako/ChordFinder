@@ -1,0 +1,104 @@
+body {
+    background-color: black;
+    color: black;
+}
+
+#piano-container {
+    display: flex;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#piano-white {
+    display: flex;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+#piano-black {
+    display: flex;
+    position: absolute;
+    top: 3px;
+    left: 24px;
+}
+
+
+
+.key {
+    display: inline-block;
+    z-index: 2;
+}
+
+.b-note {
+    background-color: rgb(0, 0, 0);
+    width: 20px;
+    height: 80px;
+    transition: 0.2s;
+    border-radius: 5px;
+    /* padding: 7px; */
+    margin: 7px;
+    /* visibility: hidden; */
+}
+
+.w-note {
+    background-color: white;
+    width: 30px;
+    height: 130px;
+    transition: 0.2s;
+    border-radius: 5px;
+    margin: 2px;
+    /* visibility: hidden; */
+}
+
+.w-note:hover {
+    background-color: rgb(218, 218, 218);
+    transition: 0.2s;
+}
+
+.b-note:hover {
+    background-color: rgb(42, 42, 42);
+    transition: 0.2s;
+}
+
+.w-note.lit {
+    background-color: rgb(255, 20, 220);
+}
+
+.b-note.lit {
+    background-color: rgb(100, 0, 255);
+}
+
+
+.w-note.lit:hover {
+    background-color: rgb(255, 85, 229);
+}
+
+.b-note.lit:hover {
+    background-color: rgb(133, 59, 230);
+}
+
+.unreal {
+    display: inline-block;
+    background-color: rgb(0, 0, 0);
+    width: 20px;
+    height: 80px;
+    transition: 0.2s;
+    border-radius: 5px;
+    padding: 7px;
+    visibility: hidden;
+    z-index: -5;
+}
+
+#note-list {
+    color: white;
+    position: absolute;
+    top: 150px;
+}
+
+#chord-list {
+    color: white;
+    position: absolute;
+    top: 170px;
+}
