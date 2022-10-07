@@ -1,7 +1,14 @@
-export function chordID(chordNotes){
+export function chordID(chordNotes, flats = false, lowNote = undefined){
 
+    
     let notesSharps = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
     let notesFlats = ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab']
+    let notesArr;
+    if(flats){
+        notesArr = notesFlats;
+    } else {
+        notesArr = notesSharps;
+    }
 
     let possibleChords = [];
 
@@ -29,7 +36,7 @@ export function chordID(chordNotes){
             tempSet.add((checkList[i]+k)%12);
         }
         if(eqSet(tempSet,powerChordSet)){
-            possibleChords.push(notesSharps[(12 - k) % 12] + " PowerChord");
+            possibleChords.push(notesArr[(12 - k) % 12] + " PowerChord");
             break;
         }
     }
@@ -107,7 +114,6 @@ export function chordID(chordNotes){
     ];
 
     for (let k = 0; k < 12; k += 1) {
-        let chordFound = false;
         tempSet = new Set();
         for (let i = 0; i < checkList.length; i += 1) {
             tempSet.add((checkList[i] + k) % 12);
@@ -115,7 +121,7 @@ export function chordID(chordNotes){
         tempSet.delete(7);
         for(let i = 0; i < majTypes.length; i += 1){
             if (eqSet(tempSet, majTypes[i].set)) {
-                possibleChords.push(notesSharps[(12 - k) % 12] + ` ${majTypes[i].name}`);
+                possibleChords.push(notesArr[(12 - k) % 12] + ` ${majTypes[i].name}`);
             }
         }
     }
@@ -189,7 +195,6 @@ export function chordID(chordNotes){
 
 
     for (let k = 0; k < 12; k += 1) {
-        let chordFound = false;
         tempSet = new Set();
         for (let i = 0; i < checkList.length; i += 1) {
             tempSet.add((checkList[i] + k) % 12);
@@ -197,12 +202,10 @@ export function chordID(chordNotes){
         tempSet.delete(7);
         for (let i = 0; i < minTypes.length; i += 1) {
             if (eqSet(tempSet, minTypes[i].set)) {
-                possibleChords.push(notesSharps[(12 - k) % 12] + ` ${minTypes[i].name}`);
+                possibleChords.push(notesArr[(12 - k) % 12] + ` ${minTypes[i].name}`);
             }
         }
     }
-
-
 
 
     // ### Dominant Chords ###
@@ -261,173 +264,274 @@ export function chordID(chordNotes){
         alteredSet,
     ];
 
-
-    //   ### Check dominant chords ###
-    // for k in range(0, 12):
-
-    //     tempSet = set([(x + k) % 12 for x in checkList])
-    // tempSet.discard(7)
-
-    // if tempSet == dom7Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 7")
-    // if tempSet == dom9Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 9")
-    // if tempSet == dom11Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 11")
-    // if tempSet == dom13Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 13")
-    // if tempSet == dom7b9Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 7b9")
-    // if tempSet == dom7Sharp9Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 7#9")
-    // if tempSet == dom7b5Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 7b5")
-    // if tempSet == dom7b13Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 7b13")
-    // if tempSet == dom9b5Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 9b5")
-    // if tempSet == alteredSet:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " Alt")
-
+    for (let k = 0; k < 12; k += 1) {
+        tempSet = new Set();
+        for (let i = 0; i < checkList.length; i += 1) {
+            tempSet.add((checkList[i] + k) % 12);
+        }
+        tempSet.delete(7);
+        for (let i = 0; i < domTypes.length; i += 1) {
+            if (eqSet(tempSet, domTypes[i].set)) {
+                possibleChords.push(notesArr[(12 - k) % 12] + ` ${domTypes[i].name}`);
+            }
+        }
+    }
 
 
     // ### Sus Chords ###
-    // sus4Set = { 0, 5}
-    // sus2Set = { 0, 2}
-    // sus2sus4Set = { 0, 2, 5}
-    // dom7sus4Set = { 0, 5, 10}
-    // dom7sus2Set = { 0, 2, 10}
-    // dom9Sus4Set = { 0, 5, 10, 2}
-    // dom7b9SusSet = { 0, 5, 10, 1}
-    // sus13Set = { 0, 10, 2, 5, 9}
-    // sus13b9Set = { 0, 10, 1, 5, 9}
-    // sus4b9Set = { 0, 5, 1}
 
+    let sus4Set = {
+        set: new Set([0, 5]),
+        name: "sus4"
+    };
+    let sus2Set = {
+        set: new Set([0, 2]),
+        name: "sus2"
+    };
+    let sus2sus4Set = {
+        set: new Set([0, 2, 5]),
+        name: "sus2sus4"
+    };
+    let dom7sus4Set = {
+        set: new Set([0, 5, 10]),
+        name: "(Dom)7sus4"
+    };
+    let dom7sus2Set = {
+        set: new Set([0, 2, 10]),
+        name: "(Dom)7sus2"
+    };
+    let dom9Sus4Set = {
+        set: new Set([0, 5, 10, 2]),
+        name: "(Dom)9sus2sus4"
+    };
+    let dom7b9SusSet = {
+        set: new Set([0, 5, 10, 1]),
+        name: "(Dom)7b9sus"
+    };
+    let sus13Set = {
+        set: new Set([0, 10, 2, 5, 9]),
+        name: "sus13"
+    };
+    let sus13b9Set = {
+        set: new Set([0, 10, 1, 5, 9]),
+        name: "sus13b9"
+    };
+    let sus4b9Set = {
+        set: new Set([0, 5, 1]),
+        name: "sus4b9"
+    };
 
+    let susTypes = [
+        sus4Set,
+        sus2Set,
+        sus2sus4Set,
+        dom7sus4Set,
+        dom7sus2Set,
+        dom9Sus4Set,
+        dom7b9SusSet,
+        sus13Set,
+        sus13b9Set,
+        sus4b9Set
+    ];
 
-    //   ### Check sus chords ###
-    // for k in range(0, 12):
-
-    //     tempSet = set([(x + k) % 12 for x in checkList])
-    // tempSet.discard(7)
-
-    // if tempSet == sus4Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " sus4")
-    // if tempSet == sus2Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " sus2")
-    // if tempSet == sus2sus4Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " sus2sus4")
-    // if tempSet == dom7sus4Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 7sus4")
-    // if tempSet == dom7sus2Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 7sus2")
-    // if tempSet == dom9Sus4Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 9sus4")
-    // if tempSet == dom7b9SusSet:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " 7b9sus")
-    // if tempSet == sus13Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " sus13")
-    // if tempSet == sus13b9Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " sus13b9")
-    // if tempSet == sus4b9Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " sus4b9")
+    for (let k = 0; k < 12; k += 1) {
+        tempSet = new Set();
+        for (let i = 0; i < checkList.length; i += 1) {
+            tempSet.add((checkList[i] + k) % 12);
+        }
+        tempSet.delete(7);
+        for (let i = 0; i < susTypes.length; i += 1) {
+            if (eqSet(tempSet, susTypes[i].set)) {
+                possibleChords.push(notesArr[(12 - k) % 12] + ` ${susTypes[i].name}`);
+            }
+        }
+    }
 
 
 
     // ### Dim Chords ###
-    // dimSet = { 0, 3, 6}
-    // halfDimSet = { 0, 3, 6, 10}
-    // fullDimSet = { 0, 3, 6, 9}
 
 
-    //   ### Check dim chords ###
-    // for k in range(0, 12):
+    let dimSet = {
+        set: new Set([0, 3, 6]),
+        name: "dim"
+    };
+    let halfDimSet = {
+        set: new Set([0, 3, 6, 10]),
+        name: "halfDim"
+    };
+    let fullDimSet = {
+        set: new Set([0, 3, 6, 9]),
+        name: "fullDim"
+    };
 
-    //     tempSet = set([(x + k) % 12 for x in checkList])
+    let dimTypes = [
+        dimSet,
+        halfDimSet,
+        fullDimSet,
+    ];
 
-    // if tempSet == dimSet:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " dim")
-    // if tempSet == halfDimSet:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " halfDim")
-    // if tempSet == fullDimSet:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " fullDim")
-
+    for (let k = 0; k < 12; k += 1) {
+        tempSet = new Set();
+        for (let i = 0; i < checkList.length; i += 1) {
+            tempSet.add((checkList[i] + k) % 12);
+        }
+        tempSet.delete(7);
+        for (let i = 0; i < dimTypes.length; i += 1) {
+            if (eqSet(tempSet, dimTypes[i].set)) {
+                possibleChords.push(notesArr[(12 - k) % 12] + ` ${dimTypes[i].name}`);
+            }
+        }
+    }
 
 
 
     // ### MinMaj Chords ###
-    // minMajSet = { 0, 3, 11}
-    // minMaj9Set = { 0, 3, 11, 2}
-    // minMaj9b13Set = { 0, 3, 11, 2, 8}
 
 
-    //   ### Check minMaj chords ###
-    // for k in range(0, 12):
+    let minMajSet = {
+        set: new Set([0, 3, 11]),
+        name: "minMaj"
+    };
+    let minMaj9Set = {
+        set: new Set([0, 3, 11, 2]),
+        name: "minMaj9"
+    };
+    let minMaj9b13Set = {
+        set: new Set([0, 3, 11, 2, 8]),
+        name: "minMaj9b13"
+    };
 
-    //     tempSet = set([(x + k) % 12 for x in checkList])
-    // tempSet.discard(7)
+    let minMajTypes = [
+        minMajSet,
+        minMaj9Set,
+        minMaj9b13Set,
+    ];
 
-    // if tempSet == minMajSet:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " minMaj")
-    // if tempSet == minMaj9Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " minMaj9")
-    // if tempSet == minMaj9b13Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " minMaj9b13")
+
+    for (let k = 0; k < 12; k += 1) {
+        tempSet = new Set();
+        for (let i = 0; i < checkList.length; i += 1) {
+            tempSet.add((checkList[i] + k) % 12);
+        }
+        tempSet.delete(7);
+        for (let i = 0; i < minMajTypes.length; i += 1) {
+            if (eqSet(tempSet, minMajTypes[i].set)) {
+                possibleChords.push(notesArr[(12 - k) % 12] + ` ${minMajTypes[i].name}`);
+            }
+        }
+    }
+
 
 
 
     // ### Aug Chords ###
-    // AugSet = { 0, 4, 8}
-    // Aug7Set = { 0, 4, 8, 10}
-    // AugMaj7Set = { 0, 4, 8, 11}
+
+    let augSet = {
+        set: new Set([0, 4, 8]),
+        name: "Aug"
+    };
+    let aug7Set = {
+        set: new Set([0, 4, 8, 10]),
+        name: "Aug7"
+    };
+    let augMaj7Set = {
+        set: new Set([0, 4, 8, 11]),
+        name: "AugMaj7"
+    };
+
+    let augTypes = [
+        augSet,
+        aug7Set,
+        augMaj7Set,
+    ];
 
 
-    //   ### Check aug chords ###
-    // for k in range(0, 12):
-
-    //     tempSet = set([(x + k) % 12 for x in checkList])
-
-    // if tempSet == AugSet:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " Aug")
-    // if tempSet == Aug7Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " Aug7")
-    // if tempSet == AugMaj7Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " AugMaj7")
-
+    for (let k = 0; k < 12; k += 1) {
+        tempSet = new Set();
+        for (let i = 0; i < checkList.length; i += 1) {
+            tempSet.add((checkList[i] + k) % 12);
+        }
+        tempSet.delete(7);
+        for (let i = 0; i < augTypes.length; i += 1) {
+            if (eqSet(tempSet, augTypes[i].set)) {
+                possibleChords.push(notesArr[(12 - k) % 12] + ` ${augTypes[i].name}`);
+            }
+        }
+    }
 
 
     // ### b5 and #11 Chords ###
-    // Majb5Set = { 0, 4, 6}
-    // Maj7b5Set = { 0, 4, 6, 11}
-    // Maj9b5Set = { 0, 4, 6, 11, 2}
-    // maj7AddSharp11Set = { 0, 4, 7, 11, 6}
-    // maj9AddSharp11Set = { 0, 4, 7, 11, 2, 6}
-    // maj13Sharp11Set = { 0, 4, 7, 11, 2, 6, 9}
-    // majAddSharp11Set = { 0, 4, 7, 6}
 
-    //   ### Check b5 and #11 chords ###
-    // for k in range(0, 12):
+    let majb5Set = {
+        set: new Set([0, 4, 6]),
+        name: "Majb5"
+    };
+    let maj7b5Set = {
+        set: new Set([0, 4, 6, 11]),
+        name: "Maj7b5"
+    };
+    let maj9b5Set = {
+        set: new Set([0, 4, 6, 11, 2]),
+        name: "Maj9b5"
+    };
+    let maj7AddSharp11Set = {
+        set: new Set([0, 4, 7, 11, 6]),
+        name: "Maj7Add#11"
+    };
+    let maj9AddSharp11Set = {
+        set: new Set([0, 4, 7, 11, 2, 6]),
+        name: "Maj9Add#11"
+    };
+    let maj13Sharp11Set = {
+        set: new Set([0, 4, 7, 11, 2, 6, 9]),
+        name: "Maj13#11Set"
+    };
+    let majAddSharp11Set = {
+        set: new Set([0, 4, 7, 6]),
+        name: "MajAdd#11"
+    };
 
-    //     tempSet = set([(x + k) % 12 for x in checkList])
-
-    // if tempSet == Majb5Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " Majb5")
-    // if tempSet == Maj7b5Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " Maj7b5")
-    // if tempSet == Maj9b5Set:
-    //     possibleChords.append(notesSharps[(0 - k) % 12] + " Maj9b5")      
-    //     elif tempSet == maj7AddSharp11Set:
-    // possibleChords.append(notesSharps[(0 - k) % 12] + " Maj7Add#11")
-    //     elif tempSet == maj9AddSharp11Set:
-    // possibleChords.append(notesSharps[(0 - k) % 12] + " Maj9Add#11")
-    //     elif tempSet == maj13Sharp11Set:
-    // possibleChords.append(notesSharps[(0 - k) % 12] + " Maj13#11")
-    //     elif tempSet == majAddSharp11Set:
-    // possibleChords.append(notesSharps[(0 - k) % 12] + " MajAdd#11")
+    let otherTypes = [
+        majb5Set,
+        maj7b5Set,
+        maj9b5Set,
+        maj7AddSharp11Set,
+        maj9AddSharp11Set,
+        maj13Sharp11Set,
+        majAddSharp11Set,
+    ];
 
 
-    return possibleChords
+    for (let k = 0; k < 12; k += 1) {
+        tempSet = new Set();
+        for (let i = 0; i < checkList.length; i += 1) {
+            tempSet.add((checkList[i] + k) % 12);
+        }
+        tempSet.delete(7);
+        for (let i = 0; i < otherTypes.length; i += 1) {
+            if (eqSet(tempSet, otherTypes[i].set)) {
+                possibleChords.push(notesArr[(12 - k) % 12] + ` ${otherTypes[i].name}`);
+            }
+        }
+    }
 
+    let mostLikely;
+    
+    if(lowNote){
+        for(let i = 0; i < possibleChords.length; i += 1){
+            if(lowNote===possibleChords[i].slice(0,lowNote.length)){
+                mostLikely = possibleChords[i];
+                possibleChords = possibleChords.slice(0,i).concat(possibleChords.slice(i+1,possibleChords.length));
+                break;
+            }
+        }
+    }
+
+    return {
+        possibleChords,
+        mostLikely,
+    }
 }
 
 function eqSet(xs, ys){
