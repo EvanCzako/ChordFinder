@@ -518,7 +518,11 @@ export function chordID(chordNotes, flats = false, lowNote = undefined){
 
     let mostLikely;
     
-    if(lowNote){
+
+    if(possibleChords.length === 1){
+        mostLikely = possibleChords[0];
+        possibleChords = undefined;
+    } else if(lowNote){
         for(let i = 0; i < possibleChords.length; i += 1){
             if(lowNote===possibleChords[i].slice(0,lowNote.length)){
                 mostLikely = possibleChords[i];

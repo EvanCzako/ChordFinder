@@ -35,7 +35,18 @@ window.addEventListener('DOMContentLoaded', () => {
     sharpsToggle.addEventListener('change',()=>{
         keyArr = sharpsToggle.checked ? keyArrSharps : keyArrFlats;
         updateNoteList();
-    })
+    });
+    document.getElementById('clear-button').addEventListener('click',() => {
+        litKeysFlat.clear();
+        litKeysSharp.clear();
+        for (let i = 0; i < keys.length; i += 1) {
+            keys[i].classList.remove('lit');
+            // if (keys[i].classList.contains('lit')) {
+            //     keys[i].classList.remove('lit');
+            // }
+        }
+        updateNoteList();
+    });
 
 
 });
@@ -46,13 +57,24 @@ function updateNoteList(){
     sortNotesArr(Array.from(litKeysSharp)) : 
     sortNotesArr(Array.from(litKeysFlat));
     let litTonesArr = litNotesArr.map((note) => note.slice(0,note.length-1));
-    // for(let i = 0; i < litNotesArr.length; i += 1){
-    //     litTonesArr[i] = litNotesArr[i].slice(0,litNotesArr[i].length-1)
-    // }
     noteList.innerHTML = litNotesArr;
     let result = chordID(litTonesArr, !sharpsToggle.checked, litTonesArr[0]);
-    mostLikely.innerHTML = result.mostLikely;
-    chordList.innerHTML = result.possibleChords;
+    if(result.mostLikely){
+        mostLikely.innerHTML = result.mostLikely;
+    } else {
+        mostLikely.innerHTML = "";
+    }
+    let htmlChordList = document.getElementById('chord-list');
+    htmlChordList.textContent = "";
+    if(result.possibleChords){
+        for(let i = 0; i < result.possibleChords.length; i += 1){
+            let li = document.createElement("li");
+            li.innerText = result.possibleChords[i];
+            li.classList.add('possible-chord');
+            htmlChordList.appendChild(li);
+        }
+    }
+    // chordList.innerHTML = result.possibleChords;
 
 }
 

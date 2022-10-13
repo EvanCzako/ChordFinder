@@ -1,0 +1,22 @@
+#note-list {
+    color: white;
+    position: absolute;
+    top: 250px;
+}
+
+#most-likely {
+    color: orange;
+    position: absolute;
+    top: 270px;
+}
+
+#chord-list {
+    color: white;
+    position: absolute;
+    top: 290px;
+}
+
+.possible-chord {
+    /* position: absolute; */
+    color: rgb(166, 61, 0);
+}

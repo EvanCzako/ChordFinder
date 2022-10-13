@@ -2,19 +2,24 @@
 
     <head>
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="piano-styles.css">
+        <link rel="stylesheet" href="chord-styles.css">
         <script src="script.js" type="module"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     </head>
 
     <body>
 
         <div id="sharps-toggle-container">
-            <div id="flat-label">b</div>
+            <div id="flat-label">♭</div>
             <label class="switch">
                 <input type="checkbox" id="flats-toggle">
                 <span class="slider round"></span>
             </label>
-            <div id="sharp-label">#</div>
+            <div id="sharp-label">♯</div>
         </div>
+
+        <button id="clear-button">Clear</button>
 
 
 
@@ -75,7 +80,7 @@
 
         <div id="note-list"></div>
         <div id="most-likely"></div>
-        <div id="chord-list"></div>
+        <ul id="chord-list"></ul>
 
 
     </body>
