@@ -302,7 +302,7 @@ export function chordID(chordNotes, flats = false, lowNote = undefined){
     };
     let dom9Sus4Set = {
         set: new Set([0, 5, 10, 2]),
-        name: "(Dom)9sus2sus4"
+        name: "(Dom)9sus4"
     };
     let dom7b9SusSet = {
         set: new Set([0, 5, 10, 1]),

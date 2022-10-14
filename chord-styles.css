@@ -1,22 +1,42 @@
+#chord-displays {
+    position: absolute;
+    top: 40%;
+    width: 80%;
+    height: 40%;
+    left: 10%;
+}
+
 #note-list {
     color: white;
     position: absolute;
-    top: 250px;
+    top: 0%;
+    left: 0%;
+    font-size: 200%;
 }
 
 #most-likely {
-    color: orange;
+    color: rgb(255, 174, 0);
     position: absolute;
-    top: 270px;
+    top: 15%;
+    font-size: 400%;
+    left: 0%;
 }
 
 #chord-list {
     color: white;
     position: absolute;
-    top: 290px;
+    top: 25%;
+    list-style: none;
+    left: 0%;
+    padding: 0;
+    font-size: 250%;
+}
+
+#chord-list.moveup {
+    top: 10%;
 }
 
 .possible-chord {
     /* position: absolute; */
-    color: rgb(166, 61, 0);
+    color: rgb(214, 78, 0);
 }

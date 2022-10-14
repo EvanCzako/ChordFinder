@@ -57,21 +57,33 @@ function updateNoteList(){
     sortNotesArr(Array.from(litKeysSharp)) : 
     sortNotesArr(Array.from(litKeysFlat));
     let litTonesArr = litNotesArr.map((note) => note.slice(0,note.length-1));
-    noteList.innerHTML = litNotesArr;
+    let noteListText = "";
+    if(litNotesArr.length > 0){
+        noteListText = "Highlighted Notes: "
+        for (let i = 0; i < litNotesArr.length - 1; i += 1) {
+            noteListText += litNotesArr[i];
+            noteListText += ", ";
+        }
+        noteListText += litNotesArr[litNotesArr.length - 1];
+    }
+    noteList.innerHTML = noteListText;
     let result = chordID(litTonesArr, !sharpsToggle.checked, litTonesArr[0]);
+
     if(result.mostLikely){
         mostLikely.innerHTML = result.mostLikely;
+        chordList.classList.remove("moveup");
     } else {
         mostLikely.innerHTML = "";
+        chordList.classList.add("moveup");
     }
-    let htmlChordList = document.getElementById('chord-list');
-    htmlChordList.textContent = "";
+
+    chordList.textContent = "";
     if(result.possibleChords){
         for(let i = 0; i < result.possibleChords.length; i += 1){
             let li = document.createElement("li");
             li.innerText = result.possibleChords[i];
             li.classList.add('possible-chord');
-            htmlChordList.appendChild(li);
+            chordList.appendChild(li);
         }
     }
     // chordList.innerHTML = result.possibleChords;
