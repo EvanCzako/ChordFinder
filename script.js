@@ -41,13 +41,17 @@ window.addEventListener('DOMContentLoaded', () => {
         litKeysSharp.clear();
         for (let i = 0; i < keys.length; i += 1) {
             keys[i].classList.remove('lit');
-            // if (keys[i].classList.contains('lit')) {
-            //     keys[i].classList.remove('lit');
-            // }
         }
         updateNoteList();
     });
-
+    let instructions = document.getElementById('instructions');
+    document.getElementById('help-button').addEventListener('click', () => {
+        if (instructions.classList.contains("showInstructions")){
+            instructions.classList.remove("showInstructions");
+        } else {
+            instructions.classList.add("showInstructions");
+        };
+    });
 
 });
 

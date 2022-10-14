@@ -114,3 +114,51 @@ input:checked+.slider:before {
     height: 4%;
     width: 7%;
 }
+
+
+#help-button {
+    position: absolute;
+    font-family: 'Rubik', sans-serif;
+    font-size: 120%;
+    color: black;
+    background-color: rgb(195, 0, 239);
+    border-radius: 5px;
+    top: 6%;
+    left: 30%;
+    height: 4%;
+    width: 7%;
+}
+
+#instructions.showInstructions {
+    visibility: visible;
+    position: absolute;
+    font-family: 'Rubik', sans-serif;
+    font-size: 110%;
+    color: rgb(0, 0, 0);
+    background-color: rgb(195, 0, 239);
+    border-radius: 5px;
+    top: 6%;
+    left: 40%;
+    height: auto;
+    width: 40%;
+    padding: 0.5%;
+    text-shadow: -1px -1px 2px rgb(99, 99, 99);
+    transition: 0.5s;
+}
+
+#instructions {
+    visibility: hidden;
+    position: absolute;
+    font-family: 'Rubik', sans-serif;
+    font-size: 110%;
+    color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    top: 6%;
+    left: 40%;
+    height: auto;
+    width: 40%;
+    padding: 0.5%;
+    text-shadow: -1px -1px 2px rgb(0, 0, 0);
+    transition: 0.5s;
+}
