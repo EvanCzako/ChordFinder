@@ -96,6 +96,10 @@ export function chordID(chordNotes, flats = false, lowNote = undefined){
         set: new Set([0, 4, 11, 2, 9]),
         name: "Maj9Add13"
     };
+    let maj7Add13Set = {
+        set: new Set([0, 4, 11, 9]),
+        name: "Maj7Add13"
+    };
     
     let majTypes = [
         majSet,
@@ -111,6 +115,7 @@ export function chordID(chordNotes, flats = false, lowNote = undefined){
         majAdd11Add13Set,
         majAdd9Add11Add13Set,
         maj9Add13Set,
+        maj7Add13Set
     ];
 
     for (let k = 0; k < 12; k += 1) {

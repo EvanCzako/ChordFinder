@@ -160,7 +160,7 @@ function initAudio(){
     lpFilter = audioCtx.createBiquadFilter();
     lpFilter.type = 'lowpass';
     lpFilter.frequency.value = 800;
-    lpFilter.Q.value = 10;
+    lpFilter.Q.value = 5;
     lpFilter.connect(audioCtx.destination);
     let freqMap = {
         "C3":  130.81,
@@ -225,13 +225,11 @@ function refreshAudio(){
     } else {
         for (let i = 0; i < keys.length; i += 1) {
             if (keys[i].classList.contains('lit')) {
-                gainArray[i].gain.value = 1;
+                gainArray[i].gain.value = 0.8/litNotesArr.length;
             } else {
                 gainArray[i].gain.value = 0;
             }
         }
     }
-
-
 
 }
