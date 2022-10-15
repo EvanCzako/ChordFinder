@@ -115,6 +115,18 @@ input:checked+.slider:before {
     width: 7%;
 }
 
+#sound-button {
+    position: absolute;
+    font-family: 'Rubik', sans-serif;
+    font-size: 120%;
+    color: black;
+    background-color: rgb(239, 0, 219);
+    border-radius: 5px;
+    top: 6%;
+    left: 30%;
+    height: 4%;
+    width: 7%;
+}
 
 #help-button {
     position: absolute;
@@ -124,7 +136,7 @@ input:checked+.slider:before {
     background-color: rgb(195, 0, 239);
     border-radius: 5px;
     top: 6%;
-    left: 30%;
+    left: 40%;
     height: 4%;
     width: 7%;
 }
@@ -138,7 +150,7 @@ input:checked+.slider:before {
     background-color: rgb(195, 0, 239);
     border-radius: 5px;
     top: 6%;
-    left: 40%;
+    left: 50%;
     height: auto;
     width: 40%;
     padding: 0.5%;
@@ -155,7 +167,7 @@ input:checked+.slider:before {
     background-color: rgb(0, 0, 0);
     border-radius: 5px;
     top: 6%;
-    left: 40%;
+    left: 50%;
     height: auto;
     width: 40%;
     padding: 0.5%;
