@@ -58,15 +58,21 @@ window.addEventListener('DOMContentLoaded', () => {
         refreshAudio();
     });
     let instructions = document.getElementById('instructions');
-    document.getElementById('help-button').addEventListener('click', () => {
-        if (instructions.classList.contains("showInstructions")){
-            instructions.classList.remove("showInstructions");
-        } else {
-            instructions.classList.add("showInstructions");
-        };
-    });
-    document.getElementById('sound-button').addEventListener('click', () => {
+    // document.getElementById('help-button').addEventListener('click', () => {
+    //     if (instructions.classList.contains("showInstructions")){
+    //         instructions.classList.remove("showInstructions");
+    //     } else {
+    //         instructions.classList.add("showInstructions");
+    //     };
+    // });
+    let soundButton = document.getElementById('sound-button');
+    soundButton.addEventListener('click', () => {
         soundOn = !soundOn;
+        if(soundOn){
+            soundButton.classList.remove("muted");
+        } else {
+            soundButton.classList.add("muted");
+        }
         refreshAudio();
     });
 });

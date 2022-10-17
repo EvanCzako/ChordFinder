@@ -139,7 +139,11 @@ input:checked+.slider:before {
     width: 7%;
 }
 
-#help-button {
+#sound-button.muted {
+    background-color: gray;
+}
+
+/* #help-button {
     position: absolute;
     font-family: 'Rubik', sans-serif;
     font-size: 120%;
@@ -150,9 +154,9 @@ input:checked+.slider:before {
     left: 40%;
     height: 4%;
     width: 7%;
-}
+} */
 
-#instructions.showInstructions {
+#instructions {
     visibility: visible;
     position: absolute;
     font-family: 'Rubik', sans-serif;
@@ -160,28 +164,41 @@ input:checked+.slider:before {
     color: rgb(0, 0, 0);
     background-color: rgb(195, 0, 239);
     border-radius: 5px;
-    top: 21%;
-    left: 50%;
+    top: 5%;
+    left: 20%;
     height: auto;
-    width: 40%;
+    width: 20%;
     padding: 0.5%;
     text-shadow: -1px -1px 2px rgb(99, 99, 99);
+}
+
+
+
+
+
+#links-container {
+    position: absolute;
+    width: 24%;
+    height: 40%;
+    top: 55%;
+    /* background-color: pink; */
+    padding: 1%;
+    font-size: 130%;
+    color: rgb(226, 43, 198);
+}
+
+#dough-lab {
+    position: absolute;
+    height: 60%;
+    width: 90%;
+    left: 0%;
+    top: 33%;
     transition: 0.5s;
 }
 
-#instructions {
-    visibility: hidden;
-    position: absolute;
-    font-family: 'Rubik', sans-serif;
-    font-size: 110%;
-    color: rgb(0, 0, 0);
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px;
-    top: 21%;
-    left: 50%;
-    height: auto;
-    width: 40%;
-    padding: 0.5%;
-    text-shadow: -1px -1px 2px rgb(0, 0, 0);
+#dough-lab:hover {
+    height: 63%;
+    width: 94%;
+    filter: saturate(2);
     transition: 0.5s;
 }

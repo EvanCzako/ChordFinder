@@ -1,9 +1,9 @@
 #chord-displays {
     position: absolute;
     top: 55%;
-    width: 80%;
+    width: 70%;
     height: 40%;
-    left: 10%;
+    left: 30%;
 }
 
 #note-list {
@@ -17,7 +17,7 @@
 #most-likely {
     color: rgb(255, 174, 0);
     position: absolute;
-    top: 15%;
+    top: 20%;
     font-size: 400%;
     left: 0%;
 }
@@ -25,7 +25,7 @@
 #chord-list {
     color: white;
     position: absolute;
-    top: 25%;
+    top: 30%;
     list-style: none;
     left: 0%;
     padding: 0;
@@ -33,10 +33,9 @@
 }
 
 #chord-list.moveup {
-    top: 10%;
+    top: 15%;
 }
 
 .possible-chord {
-    /* position: absolute; */
     color: rgb(214, 78, 0);
 }
