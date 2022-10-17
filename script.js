@@ -57,14 +57,6 @@ window.addEventListener('DOMContentLoaded', () => {
         updateNoteList();
         refreshAudio();
     });
-    let instructions = document.getElementById('instructions');
-    // document.getElementById('help-button').addEventListener('click', () => {
-    //     if (instructions.classList.contains("showInstructions")){
-    //         instructions.classList.remove("showInstructions");
-    //     } else {
-    //         instructions.classList.add("showInstructions");
-    //     };
-    // });
     let soundButton = document.getElementById('sound-button');
     soundButton.addEventListener('click', () => {
         soundOn = !soundOn;
@@ -231,7 +223,7 @@ function refreshAudio(){
     } else {
         for (let i = 0; i < keys.length; i += 1) {
             if (keys[i].classList.contains('lit')) {
-                gainArray[i].gain.value = 0.8/litNotesArr.length;
+                gainArray[i].gain.value = 0.7/(litNotesArr.length+1);
             } else {
                 gainArray[i].gain.value = 0;
             }
