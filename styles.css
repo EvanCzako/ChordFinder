@@ -4,13 +4,25 @@ body {
     font-family: 'Rubik', sans-serif;
 }
 
-#main-app-region {
+#full-container {
     position: absolute;
-    width: 70%;
+    width: 96%;
+    display: flex;
+    flex-direction: row;
+}
+
+#main-app-region {
+    /* position: absolute; */
+    width: 700%;
+    min-width: 720px;
+    min-height: 900px;
+    border: 5px solid greenyellow;
+    display: flex;
+    flex-direction: column;
 }
 
 #head-container {
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     min-width: 720px;
     min-height: 300px;
@@ -19,10 +31,7 @@ body {
 
 img {
     position: absolute;
-    /* height: 15%; */
     width: 400px;
-    /* left: 3%; */
-    /* top: 2%; */
 }
 
 #instructions {
@@ -33,26 +42,21 @@ img {
     color: rgb(0, 0, 0);
     background-color: rgb(195, 0, 239);
     border-radius: 5px;
-    /* top: 5%; */
     left: 450px;
-    /* height: auto; */
-    width: 20%;
-    min-width: 240px;
+    top: 50px;
+    /* width: 25%; */
+    width: 240px;
     padding: 4px;
     margin: 4px;
     text-shadow: -1px -1px 2px rgb(99, 99, 99);
 }
 
 
-
-
 #sharps-toggle-container {
     position: absolute;
-    left: 20px;
     top: 240px;
+    left: 20px;
     width: 150px;
-    /* min-width: 10px; */
-    /* height: 6%; */
 }
 
 #flat-label {
@@ -186,16 +190,19 @@ input:checked+.slider:before {
 
 
 
+
+
 #links-container {
-    position: absolute;
-    width: 24%;
-    height: 40%;
-    top: 55%;
-    /* background-color: pink; */
+    /* position: absolute; */
+    /* left: 70%; */
+    min-width: 300px;
+    width: 100%;
+    border: 5px solid orange;
+    /* top: 55%;
     padding: 1%;
     font-size: 130%;
     color: rgb(226, 43, 198);
-    visibility: hidden;
+    visibility: hidden; */
 }
 
 #dough-lab {
