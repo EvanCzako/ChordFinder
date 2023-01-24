@@ -1,9 +1,10 @@
 #chord-displays {
     position: absolute;
-    top: 55%;
-    width: 70%;
-    height: 40%;
-    left: 30%;
+    top: 600px;
+    width: 100%;
+    min-height: 300px;
+    min-width: 720px;
+    border: 5px solid pink;
 }
 
 #note-list {

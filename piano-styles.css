@@ -1,12 +1,10 @@
 #piano-container {
-    display: flex;
     position: absolute;
-    top: 30%;
-    left: 0px;
-    height: 25%;
-    width: 70%;
-    min-width: 620px;
-    /* background-color: rgb(11, 73, 0); */
+    top: 320px;
+    width: 100%;
+    min-width: 720px;
+    min-height: 250px;
+    border: 5px solid pink;
 }
 
 #piano-white {
